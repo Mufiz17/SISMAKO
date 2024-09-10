@@ -133,8 +133,10 @@
 
                     @foreach ($cards as $card)
                         <div class="col-12 col-sm-6 col-md-4 modals">
-                            <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#passwordModal" data-url="{{ $card['url'] }}">
+                            {{-- add di card --}}
+                            {{-- data-bs-toggle="modal"
+                                data-bs-target="#passwordModal" data-url="{{ $card['url'] }}" --}}
+                            <a href="{{$card['url']}}" class="text-decoration-none" >
                                 <div class="card shadow-sm mb-4 hover-shadow {{ $card['color'] }}">
                                     <div class="card-body d-flex align-items-center">
                                         <img src="{{ asset($card['img']) }}" alt="" class="img-fluid img-custom">
