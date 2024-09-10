@@ -522,7 +522,7 @@
 
 <div class="modal modal-blur fade" id="modalReport4" tabindex="-1" aria-hidden="true" style="display: none;">
     <form action="{{ route('no_surat.store') }}" method="post" enctype="multipart/form-data">
-        @csrf   
+        @csrf
         @method('POST')
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -1132,7 +1132,7 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </button>
-                                                        <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                        <form action="{{ route('outbox.destroy', $item->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -1500,7 +1500,7 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </button>
-                                                        <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                        <form action="{{ route('no_surat.destroy', $item->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -1688,7 +1688,7 @@
                                                             class="btn btn-icon btn-sm btn-outline-success"
                                                             role="button"
                                                             data-bs-target="#modalUpdate5{{ $item->id }}"
-                                                            data-bs-toggle="modal" 
+                                                            data-bs-toggle="modal"
                                                             data-bs-dismiss="modal">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -1704,7 +1704,7 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </button>
-                                                        <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                        <form action="{{ route('notulensi.destroy', $item->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -1886,7 +1886,7 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </button>
-                                                        <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                        <form action="{{ route('pengajuan.destroy', $item->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')

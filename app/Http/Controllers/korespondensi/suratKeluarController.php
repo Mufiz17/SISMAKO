@@ -66,7 +66,7 @@ class suratKeluarController extends Controller
     public function update(SuratKeluarRequest $request, $id)
     {
 
-        // dd($request->all());
+        dd($request->all());
         $validated = $request->validated();
 
         $suratKeluar = SuratKeluar::findOrFail($id);
