@@ -69,7 +69,7 @@ Route::view('administrasi', 'home.administrasiKeguruan')->name('administrasi');
 Route::view('finance', 'home.finance')->name('finance');
 Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
 Route::view('sarpras', 'home.sarpras')->name('sarpras');
-Route::view('pkl', 'database.pkl.pkl')->name('pkl');
+Route::view('pkl', '.database.database.pkl.pkl')->name('pkl');
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');

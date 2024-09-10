@@ -11,7 +11,7 @@
                     <div class="col-lg-12">
                         <div class="mb-3">
                             <label class="form-label">Nama lengkap</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Fadhil Rabbani" value="{{old('nama')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="nama" placeholder="Fadhil Rabbani" value="{{old('nama')}}">
                             @error('nama')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -22,7 +22,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tempat lahir</label>
-                            <input type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="{{old('tempat_tanggal_lahir')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="{{old('tempat_tanggal_lahir')}}">
                             @error('tempat_tanggal_lahir')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -31,7 +31,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tanggal lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir" value="{{old('tanggal_lahir')}}">
+                            <input autocomplete="off" type="date" class="form-control" name="tanggal_lahir" value="{{old('tanggal_lahir')}}">
                             @error('tanggal_lahir')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -42,7 +42,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label class="form-label">Tahun Pelajaran</label>
-                            <input type="text" class="form-control" autocomplete="off" placeholder="2024-2025" name="tahun_pelajaran" value="{{old('tahun_pelajaran')}}">
+                            <input autocomplete="off" type="text" class="form-control" autocomplete="off" placeholder="2024-2025" name="tahun_pelajaran" value="{{old('tahun_pelajaran')}}">
                             @error('tahun_pelajaran')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -89,7 +89,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Nama Ayah</label>
-                            <input type="text" class="form-control" name="nama_ayah" placeholder="" value="{{old('nama_ayah')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="nama_ayah" placeholder="" value="{{old('nama_ayah')}}">
                             @error('nama_ayah')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -98,7 +98,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Pekerjaan Ayah</label>
-                            <input type="text" class="form-control" name="pekerjaan_ayah" placeholder="Karyawan swasta" value="{{old('pekerjaan_ayah')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="pekerjaan_ayah" placeholder="Karyawan swasta" value="{{old('pekerjaan_ayah')}}">
                             @error('pekerjaan_ayah')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -107,7 +107,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Nama Ibu</label>
-                            <input type="text" class="form-control" name="nama_ibu" placeholder="" value="{{old('nama_ibu')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="nama_ibu" placeholder="" value="{{old('nama_ibu')}}">
                             @error('nama_ibu')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -116,7 +116,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Pekerjaan Ibu</label>
-                            <input type="text" class="form-control" name="pekerjaan_ibu" placeholder="Ibu Rumah Tangga" value="{{old('pekerjaan_ibu')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="pekerjaan_ibu" placeholder="Ibu Rumah Tangga" value="{{old('pekerjaan_ibu')}}">
                             @error('pekerjaan_ibu')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -127,7 +127,7 @@
                     <div class="col-12 mb-3">
                         <div>
                             <label class="form-label">No. Handphone Wali Siswa</label>
-                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali')}}" placeholder="0895-3355-77657">
+                            <input autocomplete="off" type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali')}}" placeholder="0895-3355-77657">
                             @error('no_hp_wali')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -136,7 +136,7 @@
                     <div class="col-lg-6 mb-3">
                         <div>
                             <label class="form-label">No. Nisn</label>
-                            <input type="number" class="form-control" name="nisn" value="{{old('nisn')}}">
+                            <input autocomplete="off" type="number" class="form-control" name="nisn" value="{{old('nisn')}}">
                             @error('nisn')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -145,7 +145,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Nis</label>
-                            <input type="number" class="form-control" name="nis" value="{{old('nis')}}">
+                            <input autocomplete="off" type="number" class="form-control" name="nis" value="{{old('nis')}}">
                             @error('nis')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -172,7 +172,7 @@
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <label class="form-label">Angkatan</label>
-                            <input type="number" class="form-control" name="angkatan" value="{{old('angkatan')}}" placeholder="2">
+                            <input autocomplete="off" type="number" class="form-control" name="angkatan" value="{{old('angkatan')}}" placeholder="2">
                             @error('angkatan')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -181,7 +181,7 @@
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <label class="form-label">Tanggal Masuk</label>
-                            <input type="date" class="form-control" name="tanggal_masuk" value="{{old('tanggal_masuk')}}">
+                            <input autocomplete="off" type="date" class="form-control" name="tanggal_masuk" value="{{old('tanggal_masuk')}}">
                             @error('tanggal_masuk')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -202,7 +202,7 @@
                     <div class="col-lg-12">
                         <div class="mb-3">
                             <label class="form-label">Asal Sekolah</label>
-                            <input type="text" class="form-control" name="asal_sekolah" placeholder="" value="{{old('asal_sekolah')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="asal_sekolah" placeholder="" value="{{old('asal_sekolah')}}">
                             @error('asal_sekolah')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -211,7 +211,7 @@
                     <div class="col-lg-12">
                         <div class="mb-3">
                             <label class="form-label">Alamat Asal Sekolah</label>
-                            <input type="text" class="form-control" name="alamat_asal_sekolah" value="{{old('alamat_asal_sekolah')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="alamat_asal_sekolah" value="{{old('alamat_asal_sekolah')}}">
                             @error('alamat_asal_sekolah')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror

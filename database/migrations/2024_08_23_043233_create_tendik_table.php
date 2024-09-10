@@ -30,9 +30,9 @@ return new class extends Migration
             $table->enum('status_kepegawaian', ['Aktif', 'Tidak aktif']);
             $table->dateTime('tanggal_masuk');
             $table->dateTime('tanggal_keluar')->nullable();
-            $table->string('foto');
-            $table->string('foto_ktp');
-            $table->string('foto_surat_keterangan_mengajar');
+            $table->string('foto')->nullable();
+            $table->string('foto_ktp')->nullable();
+            $table->string('foto_surat_keterangan_mengajar')->nullable();
             $table->timestamps();
         });
     }

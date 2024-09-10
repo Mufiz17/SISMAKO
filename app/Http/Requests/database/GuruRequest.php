@@ -40,11 +40,11 @@ class GuruRequest extends FormRequest
             'no_rekening' => 'required',
             'status_kepegawaian' => 'required',
             'tanggal_masuk' => 'required',
-            'foto' => 'required',
-            'foto_ktp' => 'required',
-            'foto_surat_keterangan_mengajar' => 'required',
-            'ijazah_smp' => 'required',
-            'ijazah_sma' => 'required'
+            // 'foto' => 'required',
+            // 'foto_ktp' => 'required',
+            // 'foto_surat_keterangan_mengajar' => 'required',
+            // 'ijazah_smp' => 'required',
+            // 'ijazah_sma' => 'required'
         ];
     }
 }

@@ -8,8 +8,9 @@
             <div class="row">
                 <!-- Card 1 -->
                 <div class="col-md-4 modals">
-                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#passwordModal"
-                        data-url="/jamaah">
+                    <a href="/jamaah" class="text-decoration-none">
+                    {{-- <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#passwordModal"
+                        data-url="/jamaah"> --}}
                         <div class="card shadow-sm mb-4 hover-shadow" style="background-color:  rgba(0, 128, 0, 0.25);">
                             <div class="card-body d-flex align-items-center">
                                 <img src="{{ asset('dist/img/gif/windows.gif') }}" alt=""
@@ -23,8 +24,9 @@
                     </a>
                 </div>
                 <div class="col-md-4 modals">
-                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#passwordModal"
-                        data-url="/patroli/asrama">
+                    <a href="/patroli/asrama" class="text-decoration-none">
+                    {{-- <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#passwordModal"
+                        data-url="/patroli/asrama"> --}}
                         <div class="card shadow-sm mb-4 hover-shadow" style="background-color:rgba(0, 123, 255, 0.25);">
                             <div class="card-body d-flex align-items-center">
                                 <img src="{{ asset('dist/img/gif/search.gif') }}" alt=""

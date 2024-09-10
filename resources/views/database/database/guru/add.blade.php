@@ -11,7 +11,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Muhammad Dzikri Fauzan"
+                            <input autocomplete="off" type="text" class="form-control" name="nama" placeholder="Muhammad Dzikri Fauzan"
                                 value="{{ old('nama') }}">
                             @error('nama')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -21,7 +21,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label class="form-label">Gelar</label>
-                            <input type="text" class="form-control" name="gelar" placeholder="S.Ag, S.Pd"
+                            <input autocomplete="off" type="text" class="form-control" name="gelar" placeholder="S.Ag, S.Pd"
                                 value="{{ old('gelar') }}">
                             @error('gelar')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -33,7 +33,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" autocomplete="off" placeholder="example@mail.com"
+                            <input autocomplete="off" type="email" class="form-control" autocomplete="off" placeholder="example@mail.com"
                                 name="email" value="{{ old('email') }}">
                             @error('email')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -57,7 +57,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tempat lahir</label>
-                            <input type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta"
+                            <input autocomplete="off" type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta"
                                 value="{{ old('tempat_tanggal_lahir') }}">
                             @error('tempat_tanggal_lahir')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -67,7 +67,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tanggal lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir"
+                            <input autocomplete="off" type="date" class="form-control" name="tanggal_lahir"
                                 value="{{ old('tanggal_lahir') }}">
                             @error('tanggal_lahir')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -79,7 +79,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Handphone</label>
-                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}" placeholder="0895-3355-77657">
+                            <input autocomplete="off" type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}" placeholder="0895-3355-77657">
                             @error('no_hp')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -88,7 +88,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Rekening & Nama Bank</label>
-                            <input type="text" class="form-control" name="no_rekening"
+                            <input autocomplete="off" type="text" class="form-control" name="no_rekening"
                                 placeholder="BRI - 22312215543" value="{{ old('no_rekening') }}" required>
                             @error('no_rekening')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -109,7 +109,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Mata Pelajaran</label>
-                            <input type="text" class="form-control" name="mapel" value="{{ old('mapel') }}" placeholder="Bahasa Inggris">
+                            <input autocomplete="off" type="text" class="form-control" name="mapel" value="{{ old('mapel') }}" placeholder="Bahasa Inggris">
                             @error('mapel')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -133,7 +133,7 @@
                     <div class="col-lg-12 mb-3">
                         <div>
                             <label class="form-label">No. nik</label>
-                            <input type="number" class="form-control" name="no_nik" value="{{ old('no_nik') }}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_nik" value="{{ old('no_nik') }}">
                             @error('no_nik')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -142,7 +142,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. NUPTK</label>
-                            <input type="number" class="form-control" name="no_nuptk"
+                            <input autocomplete="off" type="number" class="form-control" name="no_nuptk"
                                 value="{{ old('no_nuptk') }}">
                             @error('no_nuptk')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -152,7 +152,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. GTK</label>
-                            <input type="number" class="form-control" name="no_gtk" value="{{ old('no_gtk') }}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_gtk" value="{{ old('no_gtk') }}">
                             @error('no_gtk')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -161,7 +161,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Nama Perguruan tinggi</label>
-                            <input type="text" class="form-control" name="nama_lulusan_pt"
+                            <input autocomplete="off" type="text" class="form-control" name="nama_lulusan_pt"
                                 placeholder="Universitas Indonesia" value="{{ old('nama_lulusan_pt') }}">
                             @error('nama_lulusan_pt')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -171,7 +171,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Jurusan</label>
-                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder="Fakultas Ilmu Administrasi"
+                            <input autocomplete="off" type="text" class="form-control" name="nama_jurusan_pt" placeholder="Fakultas Ilmu Administrasi"
                                 value="{{ old('nama_jurusan_pt') }}">
                             @error('nama_jurusan_pt')
                                 <div class="text-danger mt-2">{{ $message }}</div>

@@ -118,6 +118,92 @@ class GuruController extends Controller
         return view('database.database.guru.edit', compact('guru'));
     }
 
+    // public function update(GuruRequest $request, $id)
+    // {
+    //     $validatedData = $request->validated();
+
+    //     $guru = Guru::findOrFail($id);
+
+    //     // Handle old directory removal only if the name has changed
+    //     $oldDirname = str_replace(' ', '_', $guru->nama);
+    //     $newDirname = str_replace(' ', '_', $request->nama);
+
+    //     if ($oldDirname !== $newDirname) {
+    //         $baseDirOld = public_path('img/guru/' . $oldDirname);
+    //         if (File::exists($baseDirOld)) {
+    //             File::deleteDirectory($baseDirOld);
+    //         }
+    //     }
+
+    //     // Prepare new directory
+    //     $baseDir = public_path("img/guru/{$newDirname}");
+    //     $this->createDirectoryIfNotExists($baseDir);
+    //     $this->createDirectoryIfNotExists("{$baseDir}/ijazah");
+    //     $this->createDirectoryIfNotExists("{$baseDir}/sertifikat");
+
+    //     // Handle file uploads
+    //     $imageNamaFoto = $request->hasFile('foto') ? $this->fileSetup($request->file('foto'), $request->nama, 'Foto-', $newDirname) : $guru->foto;
+    //     $imageNamaFotoKtp = $request->hasFile('foto_ktp') ? $this->fileSetup($request->file('foto_ktp'), $request->nama, 'Foto-KTP-', $newDirname) : $guru->foto_ktp;
+    //     $imageNamaFotoSk = $request->hasFile('foto_surat_keterangan_mengajar') ? $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $request->nama, 'Foto-SK-Mengajar-', $newDirname) : $guru->foto_surat_keterangan_mengajar;
+
+    //     // Update the Guru record with validated data
+    //     $guru->update(array_merge(
+    //         $validatedData,
+    //         [
+    //             'tanggal_keluar' => $request->tanggal_keluar,
+    //             'foto' => $imageNamaFoto,
+    //             'foto_ktp' => $imageNamaFotoKtp,
+    //             'foto_surat_keterangan_mengajar' => $imageNamaFotoSk,
+    //         ]
+    //     ));
+
+    //     $ijazahData = [];
+    //     $ijazahTypes = [
+    //         'ijazah_smp' => 'SMP',
+    //         'ijazah_sma' => 'SMA',
+    //         'ijazah_s1' => 'S1',
+    //         'ijazah_s2' => 'S2'
+    //     ];
+
+    //     foreach ($ijazahTypes as $fileKey => $jenisIjazah) {
+    //         if ($request->hasFile($fileKey)) {
+    //             $imageNamaFile = $this->fileSetup($request->file($fileKey), $request->nama, "Foto-Ijazah-{$jenisIjazah}-", $newDirname, '/ijazah');
+    //             $ijazahData[] = [
+    //                 'id_guru' => $id,
+    //                 'jenis_ijazah' => $jenisIjazah,
+    //                 'nama_file' => $imageNamaFile
+    //             ];
+    //         }
+    //     }
+
+    //     //Delete data ijazah
+    //     IjazahGuru::where('id_guru', $id)->delete();
+
+    //     //Create new data ijazah
+    //     if (!empty($ijazahData)) IjazahGuru::insert($ijazahData);
+
+    //     $sertifikatData = [];
+
+    //     //Delete data Sertifikat
+    //     SertifikatGuru::where('id_guru', $id)->delete();
+
+    //     if ($request->hasFile('foto_sertifikat')) {
+    //         $files = $request->file('foto_sertifikat');
+    //         $sertifikatDir = 'img/guru/' . $newDirname . '/sertifikat';
+
+    //         foreach ($files as $index => $file) {
+    //             $imageNamaSertifikat = $this->fileSetup($file, $request->nama, 'Sertifikat-' . ($index + 1) . '-', $newDirname, '/sertifikat');
+    //             $sertifikatData[] = ['id_guru' => $id, 'nama_file' => $imageNamaSertifikat];
+    //         }
+    //     }
+
+    //     if (!empty($sertifikatData)) SertifikatGuru::insert($sertifikatData);
+
+    //     return redirect()->route('guru.index')->with('success', 'Data berhasil di update');
+    // }
+
+
+
     public function update(GuruRequest $request, $id)
     {
         $validatedData = $request->validated();
@@ -176,15 +262,15 @@ class GuruController extends Controller
             }
         }
 
-        //Delete data ijazah
+        // Delete data ijazah lama
         IjazahGuru::where('id_guru', $id)->delete();
 
-        //Create new data ijazah
+        // Insert data ijazah baru jika ada
         if (!empty($ijazahData)) IjazahGuru::insert($ijazahData);
 
         $sertifikatData = [];
 
-        //Delete data Sertifikat
+        // Delete data sertifikat lama
         SertifikatGuru::where('id_guru', $id)->delete();
 
         if ($request->hasFile('foto_sertifikat')) {
@@ -202,8 +288,6 @@ class GuruController extends Controller
         return redirect()->route('guru.index')->with('success', 'Data berhasil di update');
     }
 
-
-
     public function exportPdf($id)
     {
         $guru = Guru::findOrFail($id);
@@ -219,8 +303,7 @@ class GuruController extends Controller
         $dompdf->render();
 
         // return $dompdf->stream($guru->nama . '.pdf');
-            return $dompdf->stream($guru->nama . '.pdf', ['Attachment' => true]);
-
+        return $dompdf->stream($guru->nama . '.pdf', ['Attachment' => true]);
     }
 
     public function download($id, Request $request)

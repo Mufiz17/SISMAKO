@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <div class="container mt-6">
         <a href="{{route('tendik.index')}}" class="btn btn-secondary mb-4">Back</a>
         <form method="post" action="{{route('tendik.update', $tendik->id)}}" id="multiStepForm" enctype="multipart/form-data">
@@ -201,69 +202,72 @@
             <div id="step-3" class="d-none border p-3 rounded-3">
                 <h1 class="text-center mb-6">Foto Ijazah</h1>
                 <div class="row">
-                    <!-- SMP -->
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">SMP</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_smp" accept=".png" oninput="handleFileUpload(event, 'ijazah_smp')" id="ijazah_smp">
+                            <input type="file" class="form-control" name="ijazah_smp" accept=".png"
+                                onchange="handleFileUpload(event, 'ijazah_smp')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_smp" onclick="removeFile('ijazah_smp')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%"
+                                    id="btn-remove-ijazah_smp" onclick="removeFile('ijazah_smp')"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                         @error('ijazah_smp')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <!-- SMA -->
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">SMA</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_sma" accept=".png" onchange="handleFileUpload(event, 'ijazah_sma')" id="ijazah_sma">
+                            <input type="file" class="form-control" name="ijazah_sma" accept=".png"
+                                onchange="handleFileUpload(event, 'ijazah_sma')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_sma" onclick="removeFile('ijazah_sma')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%"
+                                    id="btn-remove-ijazah_sma" onclick="removeFile('ijazah_sma')"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                         @error('ijazah_sma')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <!-- S1 -->
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">S1 (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_s1" accept=".png" onchange="handleFileUpload(event, 'ijazah_s1') id="ijazah_s1"">
+                            <input type="file" class="form-control" name="ijazah_s1" accept=".png"
+                                onchange="handleFileUpload(event, 'ijazah_s1')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_s1" onclick="removeFile('ijazah_s1')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%" id="btn-remove-ijazah_s1"
+                                    onclick="removeFile('ijazah_s1')"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                         @error('ijazah_s1')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <!-- S2 -->
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">S2 (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_s2" accept=".png" onchange="handleFileUpload(event, 'ijazah_s2')" id="ijazah_s2">
+                            <input type="file" class="form-control" name="ijazah_s2" accept=".png"
+                                onchange="handleFileUpload(event, 'ijazah_s2')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_s2" onclick="removeFile('ijazah_s2')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%" id="btn-remove-ijazah_s2"
+                                    onclick="removeFile('ijazah_s2')"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                         @error('ijazah_s2')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <!-- S3 -->
                     <div class="col-lg-12 mb-3">
                         <label class="form-label fw-bold">S3 (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_s3" accept=".png" onchange="handleFileUpload(event, 'ijazah_s3')" id="ijazah_s3">
+                            <input type="file" class="form-control" name="ijazah_s3" accept=".png"
+                                onchange="handleFileUpload(event, 'ijazah_s3')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_s3" onclick="removeFile('ijazah_s3')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%" id="btn-remove-ijazah_s3"
+                                    onclick="removeFile('ijazah_s3')"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                     </div>
@@ -275,36 +279,56 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">Foto</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto" accept=".png" onchange="handleFileUpload(event, 'foto')" id="foto">
+                            <input type="file" class="form-control" name="foto" accept=".png"
+                                onchange="handleFileUpload(event, 'foto')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto" onclick="removeFile('foto')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-foto"
+                                    onclick="removeFile('foto')"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
+                        @error('foto')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">FOTO KTP</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto_ktp" accept=".png" onchange="handleFileUpload(event, 'foto_ktp')" id="foto_ktp">
+                            <input type="file" class="form-control" name="foto_ktp" accept=".png"
+                                onchange="handleFileUpload(event, 'foto_ktp')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto_ktp" onclick="removeFile('foto_ktp')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-foto_ktp"
+                                    onclick="removeFile('foto_ktp')"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
+                        @error('foto_ktp')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-lg-12 mb-3">
                         <label class="form-label fw-bold">FOTO Surat Keterangan Mengajar</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto_surat_keterangan_mengajar" accept=".png" onchange="handleFileUpload(event, 'foto_surat_keterangan_mengajar')" id="foto_surat_keterangan_mengajar">
+                            <input type="file" class="form-control" name="foto_surat_keterangan_mengajar"
+                                accept=".png" onchange="handleFileUpload(event, 'foto_surat_keterangan_mengajar')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto_surat_keterangan_mengajar" onclick="removeFile('foto_surat_keterangan_mengajar')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%;"
+                                    id="btn-remove-foto_surat_keterangan_mengajar"
+                                    onclick="removeFile('foto_surat_keterangan_mengajar')"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
+                        @error('foto_surat_keterangan_mengajar')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-lg-12 mb-3">
-                        <label class="form-label fw-bold" for="foto_sertifikat">Foto sertifikat (opsional)</label>
+                        <label class="form-label fw-bold">Foto sertifikat (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto_sertifikat[]" multiple accept=".png" id="foto_sertifikat">
+                            <input type="file" class="form-control" name="foto_sertifikat[]" multiple
+                                accept=".png" onchange="handleFileUpload(event, 'foto_sertifikat')">
                             <div class="input-group-append">
-                                <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%;"
+                                    id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat')"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                     </div>

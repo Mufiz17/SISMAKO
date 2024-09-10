@@ -12,7 +12,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Muhammad Dzikri Fauzan" value="{{ old('nama', $guru->nama) }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="nama" placeholder="Muhammad Dzikri Fauzan" value="{{ old('nama', $guru->nama) }}" required>
                             @error('nama')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -21,7 +21,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label class="form-label">Gelar</label>
-                            <input type="text" class="form-control" name="gelar" placeholder="S.Ag, S.Pd" value="{{ old('gelar', $guru->gelar) }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="gelar" placeholder="S.Ag, S.Pd" value="{{ old('gelar', $guru->gelar) }}" required>
                             @error('gelar')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -32,7 +32,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" autocomplete="off" placeholder="example@mail.com" name="email" value="{{ old('email', $guru->email) }}" required>
+                            <input autocomplete="off" type="email" class="form-control" autocomplete="off" placeholder="example@mail.com" name="email" value="{{ old('email', $guru->email) }}" required>
                             @error('email')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -55,7 +55,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tempat lahir</label>
-                            <input type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="{{ old('tempat_tanggal_lahir', $guru->tempat_tanggal_lahir) }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="{{ old('tempat_tanggal_lahir', $guru->tempat_tanggal_lahir) }}" required>
                             @error('tempat_tanggal_lahir')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -64,7 +64,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tanggal lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir" value="{{ old('tanggal_lahir', $guru->tanggal_lahir->format('Y-m-d')) }}" required>
+                            <input autocomplete="off" type="date" class="form-control" name="tanggal_lahir" value="{{ old('tanggal_lahir', $guru->tanggal_lahir->format('Y-m-d')) }}" required>
                             @error('tanggal_lahir')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -75,7 +75,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Handphone</label>
-                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp', $guru->no_hp) }}" required>
+                            <input autocomplete="off" type="number" class="form-control" name="no_hp" value="{{ old('no_hp', $guru->no_hp) }}" required>
                             @error('no_hp')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -84,7 +84,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Rekening & Nama Bank</label>
-                            <input type="text" class="form-control" name="no_rekening" placeholder="BRI - 22312215543" value="{{ old('no_rekening', $guru->no_rekening) }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="no_rekening" placeholder="BRI - 22312215543" value="{{ old('no_rekening', $guru->no_rekening) }}" required>
                             @error('no_rekening')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -128,7 +128,7 @@
                     <div class="col-lg-12 mb-3">
                         <div>
                             <label class="form-label">No. nik</label>
-                            <input type="number" class="form-control" name="no_nik" value="{{ old('no_nik', $guru->no_nik) }}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_nik" value="{{ old('no_nik', $guru->no_nik) }}">
                             @error('no_nik')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -137,7 +137,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. NUPTK</label>
-                            <input type="number" class="form-control" name="no_nuptk" value="{{ old('no_gtk', $guru->no_gtk) }}" required>
+                            <input autocomplete="off" type="number" class="form-control" name="no_nuptk" value="{{ old('no_gtk', $guru->no_gtk) }}" required>
                             @error('no_nuptk')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -146,7 +146,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. GTK</label>
-                            <input type="number" class="form-control" name="no_gtk" value="{{ old('no_nuptk', $guru->no_nuptk) }}" required>
+                            <input autocomplete="off" type="number" class="form-control" name="no_gtk" value="{{ old('no_nuptk', $guru->no_nuptk) }}" required>
                             @error('no_gtk')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -155,7 +155,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Nama Perguruan tinggi</label>
-                            <input type="text" class="form-control" name="nama_lulusan_pt" placeholder="Universitas Indonesia" value="{{ old('nama_lulusan_pt', $guru->nama_lulusan_pt) }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="nama_lulusan_pt" placeholder="Universitas Indonesia" value="{{ old('nama_lulusan_pt', $guru->nama_lulusan_pt) }}" required>
                             @error('nama_lulusan_pt')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -164,7 +164,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Jurusan</label>
-                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder="Fakultas Ilmu Administrasi" value="{{ old('nama_jurusan_pt', $guru->nama_jurusan_pt) }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="nama_jurusan_pt" placeholder="Fakultas Ilmu Administrasi" value="{{ old('nama_jurusan_pt', $guru->nama_jurusan_pt) }}" required>
                             @error('nama_jurusan_pt')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -212,7 +212,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">SMP</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_smp" accept=".png" id="ijazah_smp">
+                            <input  type="file" class="form-control" name="ijazah_smp" accept=".png" id="ijazah_smp">
                             <div class="input-group-append">
                                 <button type="button" class="btn" style="height: 100%" id="btn-remove-ijazah_smp" onclick="removeFile('ijazah_smp')"><i class="fa-solid fa-x"></i></button>
                             </div>
