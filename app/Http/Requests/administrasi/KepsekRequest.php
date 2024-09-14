@@ -27,7 +27,7 @@ class KepsekRequest extends FormRequest
             'rkts' => 'nullable|file|max:2048',
             'rkjm' => 'nullable|file|max:2048',
             'prog_jangka_panjang' => 'nullable|file|max:2048',
-            'rapbs' => 'nullable|file|max:2048',
+            'rkas' => 'nullable|file|max:2048',
             // Penilaian Bulanan Guru
             'nomor_penilaian' => 'integer',
             'nama_guru' => 'string',

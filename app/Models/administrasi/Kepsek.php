@@ -21,8 +21,8 @@ class Kepsek extends Model
         'rkjm',
         // Prog. Jangka Panjang
         'prog_jangka_panjang',
-        // RAPBS
-        'rapbs',
+        // RKAS
+        'rkas',
         // Penilaian Bulanan Guru
         'nomor_penilaian',
         'nama_guru',

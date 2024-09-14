@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12" style="padding-left: 1rem; padding-right:1rem;">
+    <div class="px-5 py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="col">
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
                             <a href="{{ route('mapel.index') }}" class="btn btn-secondary">
-                                Back
+                                Kembali
                             </a>
                         </div>
                         <form class="card" action="{{ route('mapel.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div id="step1">
                                 <div class="card-body">
-                                    <h3 class="card-title">Mata Pelajaran</h3>
+                                    <h3 class="card-title text-center mb-4">Tambah Data Mata Pelajaran</h3>
                                     <div class="row row-cards">
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">

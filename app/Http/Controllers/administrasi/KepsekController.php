@@ -44,7 +44,7 @@ class KepsekController extends Controller
             'rkts',
             'rkjm',
             'prog_jangka_panjang',
-            'rapbs',
+            'rkas',
         ];
 
         foreach ($fileFields as $fileField) {
@@ -77,7 +77,7 @@ class KepsekController extends Controller
             'rkts',
             'rkjm',
             'prog_jangka_panjang',
-            'rapbs',
+            'rkas',
         ];
 
         foreach ($fileFields as $fileField) {
@@ -115,7 +115,7 @@ class KepsekController extends Controller
             'rkts',
             'rkjm',
             'prog_jangka_panjang',
-            'rapbs',
+            'rkas',
         ];
 
         foreach ($fileFields as $fileField) {
@@ -138,7 +138,7 @@ class KepsekController extends Controller
             'rkts',
             'rkjm',
             'prog_jangka_panjang',
-            'rapbs',
+            'rkas',
         ];
 
         // Create a temporary file to store the zip

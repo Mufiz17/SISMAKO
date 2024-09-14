@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="py-12 px-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="col">
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
                             <a href="{{ route('kepsek.index') }}" class="btn btn-secondary">
-                                Back
+                                Kembali
                             </a>
                         </div>
                         <form class="card" action="{{ route('kepsek.update', $kepsek->id) }}" method="POST"
@@ -17,7 +17,7 @@
                             @method('PUT')
                             <div id="step1">
                                 <div class="card-body">
-                                    <h3 class="card-title">Edit kepsek</h3>
+                                    <h3 class="card-title text-center">Edit Data kepsek</h3>
                                     <div class="row row-cards">
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
@@ -84,10 +84,10 @@
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
-                                                <label for="form-label">RAPBS</label>
-                                                <input type="file" name="rapbs" class="form-control"
-                                                    value="{{ $kepsek->rapbs }}">
-                                                @error('rapbs')
+                                                <label for="form-label">RKAS</label>
+                                                <input type="file" name="rkas" class="form-control"
+                                                    value="{{ $kepsek->rkas }}">
+                                                @error('rkas')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
                                             </div>

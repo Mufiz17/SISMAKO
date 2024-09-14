@@ -1,32 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="px-5 py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-between p-4">
-                <a href="/administrasi" class="btn btn-primary">
-                    Back
-                </a>
-                <a href="{{ route('supervisi.create') }}" class="btn btn-primary">
-                    Add Data Supervisi
-                </a>
+            <div class="d-flex justify-content-between p-4">
+                <div>
+                    <a href="/administrasi" class="btn btn-primary">Kembali</a>
+                </div>
+                <div>
+                    <a href="{{ route('supervisi.create') }}" class="btn btn-primary">Tambah</a>
+                </div>
             </div>
-            <div class="col flex flex-wrap justify-center">
-                <a href="{{ route('supervisi.index') }}" class="btn btn-secondary mb-3 ">Reset Filters</a>
+            <div class="d-flex justify-content-center mb-3">
+                <a href="{{ route('supervisi.index') }}" class="btn btn-secondary">Reset Filters</a>
             </div>
-            <form method="GET" action="{{ route('supervisi.index') }}"
-                class="mb-3 flex flex-wrap justify-center gap-4">
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        <label for="tahun_ajaran">Tahun Ajaran:</label>
-                        <select id="tahun_ajaran" name="tahun_ajaran" class="form-control"
-                            onchange="this.form.submit()">
-                            <option value="">Semua</option>
-                            @foreach ($tahunAjaranOptions as $option)
-                                <option value="{{ $option }}"
-                                    {{ $tahunAjaranFilter == $option ? 'selected' : '' }}>{{ $option }}</option>
-                            @endforeach
-                        </select>
+            <form method="GET" action="{{ route('supervisi.index') }}" class="mb-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        <div class="form-group">
+                            <label for="tahun_ajaran">Tahun Ajaran:</label>
+                            <select id="tahun_ajaran" name="tahun_ajaran" class="form-control"
+                                onchange="this.form.submit()">
+                                <option value="">Semua</option>
+                                @foreach ($tahunAjaranOptions as $option)
+                                    <option value="{{ $option }}"
+                                        {{ $tahunAjaranFilter == $option ? 'selected' : '' }}>
+                                        {{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -60,7 +62,7 @@
                                                 <td>
                                                     <a href="{{ route('supervisi.edit', $item->id) }}">
                                                         <i
-                                                                class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded-lg"></i>
+                                                            class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded-lg"></i>
                                                     </a>
                                                     <form action="{{ route('supervisi.destroy', $item->id) }}"
                                                         method="POST" style="display: inline-block;">
@@ -69,18 +71,16 @@
 
                                                         <button type="button"
                                                             class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modal-danger"></button>
+                                                            data-bs-toggle="modal" data-bs-target="#modal-danger"></button>
 
                                                         <!-- Modal -->
-                                                        <div class="modal modal-blur fade" id="modal-danger"
-                                                            tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal modal-blur fade" id="modal-danger" tabindex="-1"
+                                                            role="dialog" aria-hidden="true">
                                                             <div class="modal-dialog modal-sm modal-dialog-centered"
                                                                 role="document">
                                                                 <div class="modal-content">
                                                                     <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     <div class="modal-status bg-danger"></div>
                                                                     <div class="modal-body text-center py-4">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -88,8 +88,7 @@
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" stroke-width="2"
                                                                             stroke="currentColor" fill="none"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
+                                                                            stroke-linecap="round" stroke-linejoin="round">
                                                                             <path stroke="none" d="M0 0h24v24H0z"
                                                                                 fill="none"></path>
                                                                             <path d="M12 9v4"></path>
@@ -109,8 +108,7 @@
                                                                         <div class="w-100">
                                                                             <div class="row">
                                                                                 <div class="col">
-                                                                                    <button type="button"
-                                                                                        class="btn w-100"
+                                                                                    <button type="button" class="btn w-100"
                                                                                         data-bs-dismiss="modal">Cancel</button>
                                                                                 </div>
                                                                                 <div class="col">
@@ -155,8 +153,8 @@
                     {{ session('success') }}
                 </div>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"
-                onclick="disabledAlert()" style="cursor: pointer;"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" onclick="disabledAlert()"
+                style="cursor: pointer;"></button>
         </div>
     @endif
     <script>

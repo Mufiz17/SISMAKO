@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js CDN -->
 <script src="{{ asset('dist/libs/litepicker/dist/litepicker.js') }}" defer></script>
 <script src="https://kit.fontawesome.com/82f9bbc013.js" crossorigin="anonymous"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
 
 <script>

@@ -1,55 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12" style="padding-left: 1rem; padding-right: 1rem" >
+    <div class="px-5 py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-between p-4">
-                <a href="/administrasi" class="btn btn-primary">
-                    Kembali
-                </a>
-                <a href="{{ route('mapel.create') }}" class="btn btn-primary">
-                    Tambah
-                </a>
-            </div>
-            <div class="col flex flex-wrap justify-center">
-                <a href="{{ route('mapel.index') }}" class="btn btn-secondary mb-3 ">Reset Filters</a>
-            </div>
-            <form method="GET" action="{{ route('mapel.index') }}" class="mb-3 flex flex-wrap justify-center gap-4">
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        <label for="tahun_ajaran">Tahun Ajaran:</label>
-                        <select id="tahun_ajaran" name="tahun_ajaran" class="form-control"
-                            onchange="this.form.submit()">
-                            <option value="">Semua</option>
-                            @foreach ($tahunAjaranOptions as $option)
-                                <option value="{{ $option }}"
-                                    {{ $tahunAjaranFilter == $option ? 'selected' : '' }}>{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            <div class="d-flex justify-content-between p-4">
+                <div>
+                    <a href="/administrasi" class="btn btn-primary">Kembali</a>
                 </div>
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        <label for="kelas">Kelas:</label>
-                        <select id="kelas" name="kelas" class="form-control" onchange="this.form.submit()">
-                            <option value="">Semua</option>
-                            @foreach ($kelasOptions as $option)
-                                <option value="{{ $option }}" {{ $kelasFilter == $option ? 'selected' : '' }}>
-                                    {{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div>
+                    <a href="{{ route('mapel.create') }}" class="btn btn-primary">Tambah</a>
                 </div>
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        <label for="mapel">Mapel:</label>
-                        <select id="mapel" name="mapel" class="form-control" onchange="this.form.submit()">
-                            <option value="">Semua</option>
-                            @foreach ($mapelOptions as $option)
-                                <option value="{{ $option }}" {{ $mapelFilter == $option ? 'selected' : '' }}>
-                                    {{ $option }}</option>
-                            @endforeach
-                        </select>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <a href="{{ route('mapel.index') }}" class="btn btn-secondary">Reset Filters</a>
+            </div>
+            <form method="GET" action="{{ route('mapel.index') }}" class="mb-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        <div class="form-group">
+                            <label for="tahun_ajaran">Tahun Ajaran:</label>
+                            <select id="tahun_ajaran" name="tahun_ajaran" class="form-control"
+                                onchange="this.form.submit()">
+                                <option value="">Semua</option>
+                                @foreach ($tahunAjaranOptions as $option)
+                                    <option value="{{ $option }}"
+                                        {{ $tahunAjaranFilter == $option ? 'selected' : '' }}>
+                                        {{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        <div class="form-group">
+                            <label for="kelas">Kelas:</label>
+                            <select id="kelas" name="kelas" class="form-control" onchange="this.form.submit()">
+                                <option value="">Semua</option>
+                                @foreach ($kelasOptions as $option)
+                                    <option value="{{ $option }}" {{ $kelasFilter == $option ? 'selected' : '' }}>
+                                        {{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        <div class="form-group">
+                            <label for="mapel">Mapel:</label>
+                            <select id="mapel" name="mapel" class="form-control" onchange="this.form.submit()">
+                                <option value="">Semua</option>
+                                @foreach ($mapelOptions as $option)
+                                    <option value="{{ $option }}" {{ $mapelFilter == $option ? 'selected' : '' }}>
+                                        {{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -165,25 +168,23 @@
                                                         <i
                                                             class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded-lg"></i>
                                                     </a>
-                                                    <form action="{{ route('mapel.destroy', $item->id) }}"
-                                                        method="POST" style="display: inline-block;">
+                                                    <form action="{{ route('mapel.destroy', $item->id) }}" method="POST"
+                                                        style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')
 
                                                         <button type="button"
                                                             class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modal-danger"></button>
+                                                            data-bs-toggle="modal" data-bs-target="#modal-danger"></button>
 
                                                         <!-- Modal -->
-                                                        <div class="modal modal-blur fade" id="modal-danger"
-                                                            tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal modal-blur fade" id="modal-danger" tabindex="-1"
+                                                            role="dialog" aria-hidden="true">
                                                             <div class="modal-dialog modal-sm modal-dialog-centered"
                                                                 role="document">
                                                                 <div class="modal-content">
                                                                     <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     <div class="modal-status bg-danger"></div>
                                                                     <div class="modal-body text-center py-4">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -191,8 +192,7 @@
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" stroke-width="2"
                                                                             stroke="currentColor" fill="none"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
+                                                                            stroke-linecap="round" stroke-linejoin="round">
                                                                             <path stroke="none" d="M0 0h24v24H0z"
                                                                                 fill="none"></path>
                                                                             <path d="M12 9v4"></path>
@@ -212,8 +212,7 @@
                                                                         <div class="w-100">
                                                                             <div class="row">
                                                                                 <div class="col">
-                                                                                    <button type="button"
-                                                                                        class="btn w-100"
+                                                                                    <button type="button" class="btn w-100"
                                                                                         data-bs-dismiss="modal">Cancel</button>
                                                                                 </div>
                                                                                 <div class="col">

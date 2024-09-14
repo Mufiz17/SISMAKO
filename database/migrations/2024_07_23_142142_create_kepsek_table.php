@@ -22,8 +22,8 @@ class CreateKepsekTable extends Migration
             $table->string('rkjm')->nullable();
             // Adding columns for Prog. Jangka Panjang
             $table->string('prog_jangka_panjang')->nullable();
-            // Adding columns for RAPBS
-            $table->string('rapbs')->nullable();
+            // Adding columns for RKAS
+            $table->string('rkas')->nullable();
             // Adding columns for Penilaian Bulanan Guru
             $table->integer('nomor_penilaian');
             $table->string('nama_guru');

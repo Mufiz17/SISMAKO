@@ -32,13 +32,14 @@ class JamaahSiswaController extends Controller
             'dokumentasi_jamaah_siswa.sholat',
             'dokumentasi_jamaah_siswa.path_dokumentasi'
         )
-            ->join('dokumentasi_jamaah_siswa', 'jamaah_siswa.dokumentasi_jamaah', '=', 'dokumentasi_jamaah_siswa.id')
-            ->groupBy(
-                'dokumentasi_jamaah_siswa.id',
-                'dokumentasi_jamaah_siswa.tanggal',
-                'dokumentasi_jamaah_siswa.kelas',
-                'dokumentasi_jamaah_siswa.sholat'
-            );
+        ->join('dokumentasi_jamaah_siswa', 'jamaah_siswa.dokumentasi_jamaah', '=', 'dokumentasi_jamaah_siswa.id')
+        ->groupBy(
+            'dokumentasi_jamaah_siswa.id',
+            'dokumentasi_jamaah_siswa.tanggal',
+            'dokumentasi_jamaah_siswa.kelas',
+            'dokumentasi_jamaah_siswa.sholat',
+            'dokumentasi_jamaah_siswa.path_dokumentasi'
+        );
 
         // Apply filters if provided
         if ($tanggal) {
@@ -57,7 +58,7 @@ class JamaahSiswaController extends Controller
         $dataMutasi = $query->get();
 
         // Return the view with the filtered data
-        return view('keasramaan.jamaah.index', compact('dataMutasi', 'tanggal', 'kelas', 'sholat'));
+        return view('keasramaan.jamaah.index', compact('dataMutasi'));
     }
 
     // Show the form for creating a new resource
@@ -87,35 +88,18 @@ class JamaahSiswaController extends Controller
 
     public function store(JamaahRequest $request)
     {
-        // dd($request->all());
-        // Validasi request
         $request->validated();
-
-        // $tanggal = '2024-08-14';
-
         $pathDokumentasi = null;
         if ($request->hasFile('path_dokumentasi')) {
             $pathDokumentasi = $this->handleFileUpload($request, $request->kelas, $request->sholat);
         }
-
-        // Create or find the documentation entry
-        // $dokumen = DokumentasiJamaahSiswa::updateOrCreate(
-        //     [
-        //         'kelas' => $request->kelas,
-        //         'sholat' => $request->sholat,
-        //     ],
-        //     [
-        //         'tanggal' => $tanggal,
-        //         'path_dokumentasi' => $pathDokumentasi
-        //     ]
-        // );
 
         $dokumen = DokumentasiJamaahSiswa::create(
             [
                 'tanggal' => now(),
                 'kelas' => $request->kelas,
                 'sholat' => $request->sholat,
-                'path_dokumentasi' => $pathDokumentasi
+                'path_dokumentasi' => $pathDokumentasi ?? ''
             ]
         );
 
@@ -147,7 +131,7 @@ class JamaahSiswaController extends Controller
         $request->validate([
             'kelas' => 'required|string|max:10',
             'status' => 'required|array',
-            'status.*' => 'in:Hadir,Sakit,Alpha',
+            'status.*' => 'in:-,Hadir,Sakit,Alpha',
             'nama_siswa' => 'required|array',
             'nama_siswa.*' => 'string|max:75',
             'sholat' => 'required|string|in:subuh,dzuhur,ashar,maghrib,isya',
@@ -155,9 +139,6 @@ class JamaahSiswaController extends Controller
             'siswa_ids' => 'required|array',
             'siswa_ids.*' => 'exists:jamaah_siswa,id',
         ]);
-
-        // Debugging: Log all incoming request data
-        Log::info('Update Request Data', $request->all());
 
         // Handle file upload if a new file is provided
         $pathDokumentasi = null;
@@ -271,8 +252,8 @@ class JamaahSiswaController extends Controller
             ->where('dokumentasi_jamaah_siswa.tanggal', $tanggal) // Filter based on dokumentasi_jamaah_siswa columns
             ->where('dokumentasi_jamaah_siswa.kelas', $kelas)
             ->where('dokumentasi_jamaah_siswa.sholat', $sholat)
-            ->orderBy('siswa.nama', 'asc') // Sort by siswa.nama
-            ->select('jamaah_siswa.*', 'siswa.nama as nama_siswa'); // Select required columns
+            ->orderBy('siswa.nama', 'asc')
+            ->select('jamaah_siswa.*', 'siswa.nama as nama_siswa');
 
         $jamaahSiswa = $query->get();
 
@@ -280,10 +261,10 @@ class JamaahSiswaController extends Controller
             ->where('tanggal', $tanggal)
             ->where('kelas', $kelas)
             ->where('sholat', $sholat)
-            ->get(); // Get data from dokumentasi_jamaah_siswa
+            ->get();
 
         // Generate HTML from a view
-        $html = View::make('template.jamaahSiswa', compact('jamaahSiswa', 'dokumentasiSiswa', 'kelas', 'tanggal', 'sholat'))->render();
+        $html = View::make('database.template.jamaahSiswa', compact('jamaahSiswa', 'dokumentasiSiswa', 'kelas', 'tanggal', 'sholat'))->render();
 
         // Instantiate Dompdf
         $options = new Options();

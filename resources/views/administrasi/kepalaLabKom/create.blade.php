@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12" style="padding-left: 1rem; padding-right: 1rem;">
+    <div class="px-5 py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="col">
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
                             <a href="{{ route('kepalaLabKom.index') }}" class="btn btn-secondary">
-                                Back
+                                Kembali
                             </a>
                         </div>
-                        <h1>Create Kepala Lab Kom</h1>
                         <form action="{{ route('kepalaLabKom.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card p-3">
+                                <h1 class="card-title text-center mb-4">Tambah Data Kepala Lab Komputer</h1>
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label">Tahun Ajaran</label>
@@ -58,8 +58,8 @@
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                     </div>
+                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>

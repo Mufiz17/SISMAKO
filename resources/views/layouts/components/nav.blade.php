@@ -19,6 +19,13 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/" class="text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#dateNisnModal">Progres
+                        Kemajuan siswa
+                    </a>
+                </li>
+
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))

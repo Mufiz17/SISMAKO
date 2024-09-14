@@ -1,31 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="py-12 px-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-between p-4">
-                <a href="/administrasi" class="btn btn-primary">
-                    Back
-                </a>
-                <a href="{{ route('kepsek.create') }}" class="btn btn-primary">
-                    Add Data Kepsek
-                </a>
+            <div class="d-flex justify-content-between p-4">
+                <div>
+                    <a href="/administrasi" class="btn btn-primary">Kembali</a>
+                </div>
+                <div>
+                    <a href="{{ route('kepsek.create') }}" class="btn btn-primary">Tambah</a>
+                </div>
             </div>
-            <div class="col flex flex-wrap justify-center">
-                <a href="{{ route('kepsek.index') }}" class="btn btn-secondary mb-3 ">Reset Filters</a>
+            <div class="d-flex justify-content-center mb-3">
+                <a href="{{ route('kepsek.index') }}" class="btn btn-secondary">Reset Filters</a>
             </div>
-            <form method="GET" action="{{ route('kepsek.index') }}" class="mb-3 flex flex-wrap justify-center gap-4">
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        <label for="tahun_ajaran">Tahun Ajaran:</label>
-                        <select id="tahun_ajaran" name="tahun_ajaran" class="form-control"
-                            onchange="this.form.submit()">
-                            <option value="">Semua</option>
-                            @foreach ($tahunAjaranOptions as $option)
-                                <option value="{{ $option }}"
-                                    {{ $tahunAjaranFilter == $option ? 'selected' : '' }}>{{ $option }}</option>
-                            @endforeach
-                        </select>
+            <form method="GET" action="{{ route('kepsek.index') }}" class="mb-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        <div class="form-group">
+                            <label for="tahun_ajaran">Tahun Ajaran:</label>
+                            <select id="tahun_ajaran" name="tahun_ajaran" class="form-control"
+                                onchange="this.form.submit()">
+                                <option value="">Semua</option>
+                                @foreach ($tahunAjaranOptions as $option)
+                                    <option value="{{ $option }}"
+                                        {{ $tahunAjaranFilter == $option ? 'selected' : '' }}>
+                                        {{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -47,7 +50,7 @@
                                                 <th>RKTS</th>
                                                 <th>RKJM</th>
                                                 <th>Prog. Jangka Panjang</th>
-                                                <th>RAPBS</th>
+                                                <th>RKAS</th>
                                                 <th>Nomor Penilaian</th>
                                                 <th>Nama Guru</th>
                                                 <th>Nilai Tepat Waktu</th>
@@ -74,7 +77,7 @@
                                                     <td>{{ Str::limit($data->rkts, 10, '...') }}</td>
                                                     <td>{{ Str::limit($data->rkjm, 10, '...') }}</td>
                                                     <td>{{ Str::limit($data->prog_jangka_panjang, 10, '...') }}</td>
-                                                    <td>{{ Str::limit($data->rapbs, 10, '...') }}</td>
+                                                    <td>{{ Str::limit($data->rkas, 10, '...') }}</td>
                                                     <td>{{ $data->nomor_penilaian }}</td>
                                                     <td>{{ $data->nama_guru }}</td>
                                                     <td>{{ $data->nilai_tepat_waktu }}</td>

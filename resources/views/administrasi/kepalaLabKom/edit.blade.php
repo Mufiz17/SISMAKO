@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12" style="padding-left: 1rem; padding-right: 1rem;">
+    <div class="px-5 py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="col">
                 <div class="row row-cards">
@@ -11,12 +11,12 @@
                                 Kembali
                             </a>
                         </div>
-                        <h1>Edit Kepala Lab Kom</h1>
                         <form action="{{ route('kepalaLabKom.update', $kepalaLabKom->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card p-3">
+                                <h1 class="card-title text-center mb-4">Edit Data Kepala Lab Komputer</h1>
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label">Tahun Ajaran</label>
@@ -74,7 +74,7 @@
                                             <p>{{ basename($kepalaLabKom->data_pengguna) }}</p>
                                         @endif
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary mt-4">Update</button>
                                 </div>
                             </div>
                         </form>
