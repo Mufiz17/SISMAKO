@@ -110,6 +110,7 @@
                                     <a class="btn btn-outline-primary" href="{{ route('jamaah.exportPdf', ['tanggal' => $data->tanggal, 'kelas' => $data->kelas, 'sholat' => $data->sholat]) }}">
                                         <i class="bi bi-file-earmark-pdf"></i> Export
                                     </a>
+
                                     <a class="btn btn-success rounded" href="{{ $data->path_dokumentasi }}" download>
                                         <i class="bi bi-download"></i>
                                     </a>
