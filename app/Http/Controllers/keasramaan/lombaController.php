@@ -58,7 +58,7 @@ class lombaController extends Controller
             }
         }
 
-        pelatihan::create(array_merge($validateData, ['type' => 'lomba']));
+        pelatihan::create(array_merge($validateData, ['type' => 'lomba', 'siswa_id' => $request->siswa_id]));
         return redirect('/sekolah-keasramaan/akademik/lomba')->with('success', 'Data berhasil ditambahkan');
     }
 

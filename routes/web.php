@@ -8,6 +8,7 @@ use App\Http\Controllers\penilaian\PasController;
 use App\Http\Controllers\penilaian\PatController;
 use App\Http\Controllers\penilaian\PtsController;
 use App\Http\Controllers\database\SiswaController;
+use App\Http\Controllers\keasramaan\LabController;
 use App\Http\Controllers\penilaian\RptsController;
 use App\Http\Controllers\database\TendikController;
 use App\Http\Controllers\penilaian\RaporController;
@@ -54,23 +55,31 @@ use App\Http\Controllers\database\PklAdministrasiSiswaController;
 use App\Http\Controllers\korespondensi\SuratPeringatanController;
 use App\Http\Controllers\database\PklAdministrasiSekolahController;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/smktibazma.sch.id', function () {
     return view('progres');
 });
-
-// });
-Route::get('database', [DatabaseDashboard::class, 'index'])->name('dashboard');
-Route::view('penilaian', 'home.penilaian')->name('penilaian');
-Route::view('administrasi', 'home.administrasiKeguruan')->name('administrasi');
-Route::view('finance', 'home.finance')->name('finance');
-Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
-Route::view('sarpras', 'home.sarpras')->name('sarpras');
-Route::view('pkl', '.database.database.pkl.pkl')->name('pkl');
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
+
+Route::middleware('password')->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('database', [DatabaseDashboard::class, 'index'])->name('dashboard');
+    Route::get('/korespondensi', [indexController::class, 'index'])->name('inbox.index');
+    Route::view('penilaian', 'home.penilaian')->name('penilaian');
+    Route::view('administrasi', 'home.administrasiKeguruan')->name('administrasi');
+    Route::view('finance', 'home.finance')->name('finance');
+    Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
+    Route::view('sarpras', 'home.sarpras')->name('sarpras');
+    Route::view('pkl', '.database.database.pkl.pkl')->name('pkl');
+    Route::get('/pin', [App\Http\Controllers\PasswordController::class, 'index'])->name('pin');
+    Route::get('/change-password-sismako', [App\Http\Controllers\PasswordController::class, 'editPw'])->name('pw.edit');
+    Route::post('/pin', [App\Http\Controllers\PasswordController::class, 'checkPw'])->name('checkPw');
+    Route::put('/change-password', [App\Http\Controllers\PasswordController::class, 'updatePassword'])->name('password.update');
+    Route::get('/jamaah', [App\Http\Controllers\keasramaan\JamaahSiswaController::class, 'index'])->name('jamaah.index');
+    Route::get('/patroli/asrama', [App\Http\Controllers\keasramaan\PatroliAsramaController::class, 'index'])->name('patroli.asrama.index');
+    Route::get('/sekolah-keasramaan/akses-lab',[App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
+});
 
 Route::view('created-by', 'home.createdBy')->name('created-by');
 
@@ -146,46 +155,46 @@ Route::controller(PanitiaController::class)->group(function () {
 
 // Sarpras
 Route::controller(SchoolPurchaseController::class)->group(function () {
-    Route::get('/sarpras/school-purchase', 'index')->name('school-purchases.index');
-    Route::get('/sarpras/good-items-school', 'goodItems')->name('good-items-school');
-    Route::get('/sarpras/damaged-items-school', 'damagedItems')->name('damaged-items-school');
+    Route::get('/sarpas/school-purchase', 'index')->name('school-purchases.index');
+    Route::get('/sarpas/good-items-school', 'goodItems')->name('good-items-school');
+    Route::get('/sarpas/damaged-items-school', 'damagedItems')->name('damaged-items-school');
 
-    Route::post('/sarpras/school-purchase', 'store')->name('school-purchases.store');
-    Route::get('/sarpras/school-purchases/{id}/download', 'download')->name('school-purchases.download');
+    Route::post('/sarpas/school-purchase', 'store')->name('school-purchases.store');
+    Route::get('/sarpas/school-purchases/{id}/download', 'download')->name('school-purchases.download');
 
-    Route::get('/sarpras/school-purchases/create', 'create')->name('school-purchases.create');
-    Route::get('/sarpras/school-purchases/{id}/edit', 'edit')->name('school-purchases.edit');
-    Route::put('/sarpras/school-purchases/{id}', 'update')->name('school-purchases.update');
-    Route::delete('/sarpras/school-purchases/{id}', 'destroy')->name('school-purchases.destroy');
-    Route::get('/sarpras/school-purchases/print', 'print')->name('school-purchases.print');
+    Route::get('/sarpas/school-purchases/create', 'create')->name('school-purchases.create');
+    Route::get('/sarpas/school-purchases/{id}/edit', 'edit')->name('school-purchases.edit');
+    Route::put('/sarpas/school-purchases/{id}', 'update')->name('school-purchases.update');
+    Route::delete('/sarpas/school-purchases/{id}', 'destroy')->name('school-purchases.destroy');
+    Route::get('/sarpas/school-purchases/print', 'print')->name('school-purchases.print');
 
-    Route::get('/sarpras/damaged-items-school/{$id}', 'getDamaged')->name('damaged-items-school.getDamaged');
-    Route::get('/sarpras/damaged-items-school/{id}/edit', 'edit')->name('damaged-items-school.edit');
+    Route::get('/sarpas/damaged-items-school/{$id}', 'getDamaged')->name('damaged-items-school.getDamaged');
+    Route::get('/sarpas/damaged-items-school/{id}/edit', 'edit')->name('damaged-items-school.edit');
     // Route::get('/items/{id}', 'show')->name('items.show');
-    Route::put('/sarpras/damaged-items-school/{id}', 'damaged')->name('damaged-items-school.damaged');
+    Route::put('/sarpas/damaged-items-school/{id}', 'damaged')->name('damaged-items-school.damaged');
 });
 
 Route::controller(DormPurchaseController::class)->group(function () {
-    Route::get('/sarpras/dorm-purchase', 'index')->name('dorm-purchases.index');
-    Route::get('/sarpras/good-items-dorm', 'goodItems')->name('good-items-dorm');
-    Route::get('/sarpras/damaged-items-dorm', 'damagedItems')->name('damaged-items-dorm');
+    Route::get('/sarpas/dorm-purchase', 'index')->name('dorm-purchases.index');
+    Route::get('/sarpas/good-items-dorm', 'goodItems')->name('good-items-dorm');
+    Route::get('/sarpas/damaged-items-dorm', 'damagedItems')->name('damaged-items-dorm');
 
-    Route::post('/sarpras/dorm-purchase', 'store')->name('dorm-purchases.store');
-    Route::get('/sarpras/dorm-purchases/{id}/download', 'download')->name('dorm-purchases.download');
+    Route::post('/sarpas/dorm-purchase', 'store')->name('dorm-purchases.store');
+    Route::get('/sarpas/dorm-purchases/{id}/download', 'download')->name('dorm-purchases.download');
 
-    Route::get('/sarpras/dorm-purchases/create', 'create')->name('dorm-purchases.create');
-    Route::get('/sarpras/dorm-purchases/{id}/edit', 'edit')->name('dorm-purchases.edit');
-    Route::put('/sarpras/dorm-purchases/{id}', 'update')->name('dorm-purchases.update');
-    Route::delete('/sarpras/dorm-purchases/{id}', 'destroy')->name('dorm-purchases.destroy');
-    Route::get('/sarpras/dorm-purchases/print', 'print')->name('dorm-purchases.print');
+    Route::get('/sarpas/dorm-purchases/create', 'create')->name('dorm-purchases.create');
+    Route::get('/sarpas/dorm-purchases/{id}/edit', 'edit')->name('dorm-purchases.edit');
+    Route::put('/sarpas/dorm-purchases/{id}', 'update')->name('dorm-purchases.update');
+    Route::delete('/sarpas/dorm-purchases/{id}', 'destroy')->name('dorm-purchases.destroy');
+    Route::get('/sarpas/dorm-purchases/print', 'print')->name('dorm-purchases.print');
 
-    Route::get('/sarpras/damaged-items-dorm/{$id}', 'getDamaged')->name('damaged-items-dorm.getDamaged');
-    Route::get('/sarpras/damaged-items-dorm/{id}/edit', 'edit')->name('damaged-items-dorm.edit');
+    Route::get('/sarpas/damaged-items-dorm/{$id}', 'getDamaged')->name('damaged-items-dorm.getDamaged');
+    Route::get('/sarpas/damaged-items-dorm/{id}/edit', 'edit')->name('damaged-items-dorm.edit');
     // Route::get('/items/{id}', 'show')->name('items.show');
-    Route::put('/sarpras/damaged-items-dorm/{id}', 'damaged')->name('damaged-items-dorm.damaged');
+    Route::put('/sarpas/damaged-items-dorm/{id}', 'damaged')->name('damaged-items-dorm.damaged');
 });
 
-Route::get('sarpras/zip-file', [SchoolPurchaseController::class, 'zip']);
+Route::get('sarpas/zip-file', [SchoolPurchaseController::class, 'zip']);
 
 
 
@@ -287,6 +296,7 @@ Route::get('/kelas', [DataKelasController::class, 'index'])->name('kelas.index')
 Route::get('/api/siswa', [PunishmentController::class, 'getSiswaByAngkatan']);
 Route::get('/api/siswa', [DataKelasController::class, 'getSiswaByAngkatan']);
 Route::get('/api/siswa-lulus/', [DataKelasController::class, 'getSiswaLulusByAngkatan']);
+Route::get('/api/siswa/kelas', [DataKelasController::class, 'getSiswaByKelas']);
 
 Route::get('/kelas/create', [DataKelasController::class, 'create'])->name('kelas.create');
 
@@ -315,7 +325,6 @@ Route::get('/kelas/export', [DataKelasController::class, 'exportPdf'])->name('ke
 
 // keasramaan
 Route::controller(JamaahSiswaController::class)->group(function () {
-    Route::get('/jamaah', 'index')->name('jamaah.index');
     Route::get('/jamaah/create', 'create')->name('jamaah.create');
     Route::post('/jamaah/create/data', 'store')->name('jamaah.store');
     Route::get('jamaah/{tanggal}/{kelas}/{sholat}/edit/{id}', [JamaahSiswaController::class, 'edit'])->name('jamaah.edit');
@@ -329,10 +338,8 @@ Route::controller(JamaahSiswaController::class)->group(function () {
 });
 
 Route::controller(PatroliAsramaController::class)->group(function () {
-    Route::get('/patroli/asrama', 'index')->name('patroli.asrama.index');
     Route::get('/patroli/asrama/create', 'create')->name('patroli.asrama.create');
     Route::get('/patroli/asrama/{id}/edit', [PatroliAsramaController::class, 'edit'])->name('patroli.asrama.edit');
-
     Route::post('/patroli/asrama/create/data', 'store')->name('patroli.asrama.store');
     Route::put('/patroli/asrama/{id}', [PatroliAsramaController::class, 'update'])->name('patroli.asrama.update');
     Route::delete('/patroli/delete/{id}', 'destroy')->name('patroli.asrama.destroy');
@@ -341,7 +348,7 @@ Route::controller(PatroliAsramaController::class)->group(function () {
 
 //clear
 Route::controller(tahfidzController::class)->group(function () {
-    Route::get('/sekolah-keasramaan/al-quran/tahfidz', 'index')->name('tahfidz');
+    Route::get('/sekolah-keasramaan/al-quran/tahfidz', 'index')->name('tahfidz');   
     Route::get('/sekolah-keasramaan/al-quran/tahfidz/create', 'create')->name('tahfidz.create');
     Route::post('/sekolah-keasramaan/al-quran/tahfidz/store', 'store')->name('tahfidz.perform');
     Route::get('/sekolah-keasramaan/al-quran/tahfidz/edit/{id}', 'edit')->name('tahfidz.edit');
@@ -369,7 +376,6 @@ Route::controller(sertifikatController::class)->group(function () {
     Route::delete('/sekolah-keasramaan/al-quran/sertif/delete/{id}', 'destroy')->name('sertifikat.delete');
 });
 
-//clear in http://127.0.0.1:8000/sekolah-keasramaan/akademik/pelatihan/create
 Route::controller(pelatihanController::class)->group(function () {
     Route::get('/sekolah-keasramaan/akademik/pelatihan', 'index')->name('pelatihan.index');
     Route::get('/sekolah-keasramaan/akademik/pelatihan/create', 'create')->name('pelatihan.create');
@@ -379,7 +385,6 @@ Route::controller(pelatihanController::class)->group(function () {
     Route::delete('/sekolah-keasramaan/akademik/pelatihan/delete/{id}', 'destroy')->name('pelatihan.delete');
 });
 
-//clear
 Route::controller(lombaController::class)->group(function () {
     Route::get('/sekolah-keasramaan/akademik/lomba', 'index')->name('lomba.index');
     Route::get('/sekolah-keasramaan/akademik/lomba/create', 'create')->name('lomba.create');
@@ -389,7 +394,6 @@ Route::controller(lombaController::class)->group(function () {
     Route::delete('/sekolah-keasramaan/akademik/lomba/delete/{id}', 'destroy')->name('lomba.delete');
 });
 
-//clear
 Route::controller(eventualController::class)->group(function () {
     Route::get('/sekolah-keasramaan/akademik/eventual', 'index')->name('eventual.index');
     Route::get('/sekolah-keasramaan/akademik/eventual/create', 'create')->name('eventual.create');
@@ -399,7 +403,6 @@ Route::controller(eventualController::class)->group(function () {
     Route::delete('/sekolah-keasramaan/akademik/eventual/delete/{id}', 'destroy')->name('eventual.delete');
 });
 
-
 Route::controller(akhlakController::class)->group(function () {
     Route::get('/sekolah-keasramaan/jurnal-asrama/akhlak', 'index')->name('akhlak.index');
     Route::get('/sekolah-keasramaan/jurnal-asrama/akhlak/create', 'create')->name('akhlak.create');
@@ -408,6 +411,7 @@ Route::controller(akhlakController::class)->group(function () {
     Route::put('/sekolah-keasramaan/jurnal-asrama/akhlak/update/{id}', 'update')->name('akhlak.update');
     Route::delete('/sekolah-keasramaan/jurnal-asrama/akhlak/delete/{id}', 'destroy')->name('akhlak.delete');
 });
+
 Route::controller(fiqihController::class)->group(function () {
     Route::get('/sekolah-keasramaan/jurnal-asrama/fiqih', 'index')->name('fiqih.index');
     Route::get('/sekolah-keasramaan/jurnal-asrama/fiqih/create', 'create')->name('fiqih.create');
@@ -416,6 +420,7 @@ Route::controller(fiqihController::class)->group(function () {
     Route::put('/sekolah-keasramaan/jurnal-asrama/fiqih/update/{id}', 'update')->name('fiqih.update');
     Route::delete('/sekolah-keasramaan/jurnal-asrama/fiqih/delete/{id}', 'destroy')->name('fiqih.delete');
 });
+
 Route::controller(tafsirController::class)->group(function () {
     Route::get('/sekolah-keasramaan/jurnal-asrama/tafsir', 'index')->name('tafsir.index');
     Route::get('/sekolah-keasramaan/jurnal-asrama/tafsir/create', 'create')->name('tafsir.create');
@@ -424,6 +429,7 @@ Route::controller(tafsirController::class)->group(function () {
     Route::put('/sekolah-keasramaan/jurnal-asrama/tafsir/update/{id}', 'update')->name('tafsir.update');
     Route::delete('/sekolah-keasramaan/jurnal-asrama/tafsir/delete/{id}', 'destroy')->name('tafsir.delete');
 });
+
 Route::controller(tajwidController::class)->group(function () {
     Route::get('/sekolah-keasramaan/jurnal-asrama/tajwid', 'index')->name('tajwid.index');
     Route::get('/sekolah-keasramaan/jurnal-asrama/tajwid/create', 'create')->name('tajwid.create');
@@ -433,22 +439,28 @@ Route::controller(tajwidController::class)->group(function () {
     Route::delete('/sekolah-keasramaan/jurnal-asrama/tajwid/delete/{id}', 'destroy')->name('tajwid.delete');
 });
 
+Route::controller(LabController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/akses-lab/create', 'create')->name('lab.create');
+    Route::post('/sekolah-keasramaan/akses-lab/store', 'store')->name('lab.store');
+    Route::get('/sekolah-keasramaan/akses-lab/edit', 'edit')->name('lab.edit');
+    Route::put('/sekolah-keasramaan/akses-lab/update', 'update')->name('lab.update');
+    Route::delete('/sekolah-keasramaan/akses-lab/delete', 'destroy')->name('lab.delete');
+});
+
 Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');
 
 
 
 
 // korespondensi
+Route::get('/pdf/{model}', [GeneratePdfController::class, 'generatepdf'])->name('pdf');
+
 Route::controller(GuruController::class)->group(function () {
     Route::get('/guru', 'index')->name('guru.index');
     Route::get('/guru/create', 'create')->name('guru.create');
     Route::post('/guru/create/data', 'store')->name('guru.store');
     Route::delete('/guru/delete/{id}', 'destroy')->name('guru.destory');
 });
-
-Route::get('/korespondensi', [indexController::class, 'index'])->name('inbox.index');
-
-Route::get('/pdf/{model}', [GeneratePdfController::class, 'generatepdf'])->name('pdf');
 
 Route::controller(SuratMasukController::class)->group(function () {
     // Route::get('/inbox', 'index')->name('inbox.index');

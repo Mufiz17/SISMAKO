@@ -122,11 +122,11 @@
             fetch(`/api/siswa?angkatan=${angkatan}`)
                 .then(response => response.json())
                 .then(data => {
-                    data.forEach(siswa => {
+                    data.forEach(data => {
                         const option = document.createElement('option');
-                        option.value = siswa.id;
-                        console.log(siswa)
-                        option.textContent = siswa.nama;
+                        option.value = data.id;
+                        console.log(data)
+                        option.textContent = data.siswa.nama;
                         namesSelect.appendChild(option);
                     });
                 })

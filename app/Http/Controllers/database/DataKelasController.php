@@ -168,6 +168,18 @@ class DataKelasController extends Controller
         return response()->json($siswa);
     }
 
+    public function getSiswaByKelas(Request $request) {
+        $kelas = $request->query('kelas');
+        if ($kelas) {
+            $siswa = DataKelas::where('kelas', $kelas)->select('id_siswa')->with(['siswa:id,nama'])->get();
+        } else {
+            $siswa = collect();
+        }
+
+        return response()->json($siswa);
+
+    }
+
     public function getSiswaLulusByAngkatan(Request $request)
     {
         $angkatan = $request->query('angkatan');

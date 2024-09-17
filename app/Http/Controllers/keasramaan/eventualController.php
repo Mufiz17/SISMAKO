@@ -53,7 +53,7 @@ class eventualController extends Controller
             }
         }
 
-        pelatihan::create(array_merge($validateData, ['type' => 'eventual']));
+        pelatihan::create(array_merge($validateData, ['type' => 'eventual', 'siswa_id' => $request->siswa_id]));
         return redirect('/sekolah-keasramaan/akademik/eventual')->with('success', 'Data berhasil ditambahkan');
     }
 

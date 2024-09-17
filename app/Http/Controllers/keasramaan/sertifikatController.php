@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\keasramaan;
 
 use Illuminate\Support\Str;
-
 use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Http\Controllers\Controller;
@@ -21,15 +20,10 @@ class sertifikatController extends Controller
 
     public function create(Request $request)
     {
-        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+        $mutasiFilter = $request->query('angkatan', '');
 
-        // Fetch distinct angkatan values from Siswa model
         $angkatan = Siswa::distinct()->pluck('angkatan');
-
-        // Get the selected angkatan from the request or default to an empty string
         $defaultAngkatan = $request->angkatan;
-
-        // Fetch names for the selected angkatan if available
         $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
 
         return view('keasramaan.quran.sertifikat.create', compact('angkatan', 'names'));
@@ -39,7 +33,7 @@ class sertifikatController extends Controller
     {
         $validateData = $request->validated();
 
-        // Menyimpan file-file yang di-upload dengan nama asli
+        // Simpan file yang diunggah dengan nama acak
         $fileFields = [
             'juz_30',
             'juz_29',
@@ -48,7 +42,7 @@ class sertifikatController extends Controller
         ];
 
         foreach ($fileFields as $fileField) {
-            if ($request->file($fileField)) {
+            if ($request->hasFile($fileField)) {
                 $file = $request->file($fileField);
                 $originalName = Str::random(30) . '.' . $file->getClientOriginalExtension();
                 $validateData[$fileField] = $file->storeAs('al-quran/sertifikat', $originalName, 'public');
@@ -62,23 +56,23 @@ class sertifikatController extends Controller
 
     public function edit($id)
     {
-        $sertifikat = sertifikat::find($id);
+        $sertifikat = sertifikat::findOrFail($id);
         return view('keasramaan.quran.sertifikat.edit', compact('sertifikat'));
     }
 
-    public function update(SertifikatRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $validateData = $request->validated([
+        $sertifikat = sertifikat::findOrFail($id);
+
+        $validateData = $request->validate([
             'tanggal' => 'required',
-            'juz_30' => 'file|max:10240',
-            'juz_29' => 'file|max:10240',
-            'juz_28' => 'file|max:10240',
-            'juz_umum' => 'file|max:10240',
+            'juz_30' => 'file|max:10240|mimes:pdf,jpg,jpeg,png',
+            'juz_29' => 'file|max:10240|mimes:pdf,jpg,jpeg,png',
+            'juz_28' => 'file|max:10240|mimes:pdf,jpg,jpeg,png',
+            'juz_umum' => 'file|max:10240|mimes:pdf,jpg,jpeg,png',
         ], [
             'tanggal.required' => 'Tahun ajaran harus diisi',
         ]);
-
-        $sertifikat = sertifikat::findOrFail($id);
 
         $fileFields = [
             'juz_30',
@@ -88,17 +82,17 @@ class sertifikatController extends Controller
         ];
 
         foreach ($fileFields as $fileField) {
-            if ($request->file($fileField)) {
+            if ($request->hasFile($fileField)) {
                 // Hapus file lama jika ada
                 if ($sertifikat->$fileField) {
-                    Storage::delete($sertifikat->$fileField);
+                    Storage::disk('public')->delete($sertifikat->$fileField);
                 }
                 // Simpan file baru
                 $file = $request->file($fileField);
-                $originalName = $file->getClientOriginalName();
-                $validateData[$fileField] = $file->storeAs($fileField, $originalName, 'public');
+                $originalName = Str::random(30) . '.' . $file->getClientOriginalExtension();
+                $validateData[$fileField] = $file->storeAs('al-quran/sertifikat', $originalName, 'public');
             } else {
-                // Set the field to the old value if no file was uploaded
+                // Biarkan nilai file tetap seperti sebelumnya jika tidak ada file baru yang diunggah
                 $validateData[$fileField] = $sertifikat->$fileField;
             }
         }
@@ -107,7 +101,6 @@ class sertifikatController extends Controller
 
         return redirect('/sekolah-keasramaan/al-quran/sertif')->with('success', 'Data berhasil diperbaharui');
     }
-
 
     public function destroy($id)
     {
@@ -120,12 +113,14 @@ class sertifikatController extends Controller
             'juz_umum',
         ];
 
+        // Hapus file-file yang ada
         foreach ($fileFields as $fileField) {
             if ($sertifikat->$fileField) {
-                Storage::delete($sertifikat->$fileField);
+                Storage::disk('public')->delete($sertifikat->$fileField);
             }
         }
 
+        // Hapus data sertifikat dari database
         $sertifikat->delete();
 
         return redirect('/sekolah-keasramaan/al-quran/sertif')->with('success', 'Data berhasil dihapus');

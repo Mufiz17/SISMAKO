@@ -66,7 +66,7 @@ class pelatihanController extends Controller
         }
 
 
-        pelatihan::create(array_merge($validateData, ['type' => 'pelatihan']));
+        pelatihan::create(array_merge($validateData, ['type' => 'pelatihan', 'siswa_id' => $request->siswa_id]));
         return redirect('/sekolah-keasramaan/akademik/pelatihan')->with('success', 'Data berhasil ditambahkan');
     }
 
